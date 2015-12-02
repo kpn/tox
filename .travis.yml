@@ -5,3 +5,8 @@ services:
   
 before_install:
   - docker build -t kpndigital/tox .
+  
+script:
+  - docker run --rm kpndigital/tox python2.7 --version
+  - docker run --rm kpndigital/tox python3.4 --version
+  - docker run --rm kpndigital/tox python3.5 --version
