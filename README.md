@@ -1,6 +1,6 @@
-# docker-tox
+# docker-tox [![Build Status](https://travis-ci.org/kpn-digital/tox.svg?branch=master)](https://travis-ci.org/kpn-digital/tox)
 
-A Docker image for Python development.
+A Docker image for running python unittests through tox.
 
 ## OS
 
