@@ -8,11 +8,11 @@ A Docker image for running python unittests through tox.
 
 ## Python versions
 
-* 2.7.10
+* 2.7.11
 * 3.4.3
-* 3.5.0
+* 3.5.1 (default)
 
 ## Python packages
 
-* pip=7.1.2
+* pip
 * tox

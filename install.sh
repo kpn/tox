@@ -1,8 +1,7 @@
 #!/bin/bash
 
-PYTHON_VERSIONS=(2.7.10 3.4.3 3.5.0)
-PYTHON_GLOBAL_VERSION=3.4.3
-PYTHON_PIP_VERSION=7.1.2
+PYTHON_VERSIONS=(2.7.11 3.4.3 3.5.1)
+PYTHON_GLOBAL_VERSION=3.5.1
 
 # Install pyenv
 curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer -o /pyenv-installer
@@ -24,12 +23,16 @@ for v in "${PYTHON_VERSIONS[@]}"; do
 done
 wait
 
+# Install pip and tox in all python versions
+for v in "${PYTHON_VERSIONS[@]}"; do
+    pyenv shell $v
+    pip install -U pip &
+    pip install -U tox &
+done
+wait
+
 # Set global python version
 pyenv global $PYTHON_GLOBAL_VERSION "${PYTHON_VERSIONS[@]}"
-
-# Install tox
-pip install -U pip
-pip install -U tox
 
 # Cleanup
 rm /pyenv-installer
