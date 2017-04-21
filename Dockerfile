@@ -1,16 +1,38 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04 
+ENV pythonVersions='python2.7 python3.5'
 
-COPY install.sh /install.sh
-
-RUN sudo apt-get update
-RUN sudo apt-get install libjpeg-dev curl git-core build-essential \
-    python-pip make build-essential libssl-dev zlib1g-dev libbz2-dev \
-    libreadline-dev libsqlite3-dev -y \
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends $pythonVersions \
     && rm -rf /var/lib/apt/lists/*
 
-RUN git config --global url.https://github.com/.insteadOf git://github.com/
-RUN /bin/bash /install.sh && rm /install.sh
+RUN apt-get update \
+    && apt-get install time netcat gettext libjpeg-dev curl git-core build-essential \
+         make build-essential libssl-dev zlib1g-dev libbz2-dev \
+         libreadline-dev libsqlite3-dev -y \
+    && rm -rf /var/lib/apt/lists/*
 
-ENV HOME /root
-ENV PYENV_ROOT $HOME/.pyenv
-ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
+
+COPY get-pip.py /tmp/get-pip.py
+
+RUN for pybin in $pythonVersions; do $pybin /tmp/get-pip.py; done && rm -rf /tmp/get-pip.py
+
+RUN apt-get update \
+    && apt-get install -y virtualenv \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN ln -s `which python2.7` /usr/bin/python2
+RUN ln -s `which virtualenv` /usr/local/bin/virtualenv-2.7
+
+RUN apt-get update \
+    && apt-get install -y \
+         apt-transport-https \
+         ca-certificates \
+         software-properties-common \
+    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    && apt-get update \
+    && apt-get install -y docker-ce \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY docker-compose /usr/local/bin/docker-compose
