@@ -1,9 +1,12 @@
-FROM ubuntu:16.04 
-ENV pythonVersions='python2.7 python3.5'
+FROM ubuntu:16.10
+ENV python2Versions='python2.7'
+ENV python3Versions='python3.5 python3.6'
+ENV pythonVersions="$python2Versions $python3Versions"
 
 RUN set -x \
     && apt-get update \
     && apt-get install -y --no-install-recommends $pythonVersions \
+    && apt-get install -y $(for py3ver in $python3Versions; do echo $py3ver-venv; done) \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
