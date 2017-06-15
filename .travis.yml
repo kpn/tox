@@ -4,12 +4,14 @@ services:
   - docker
   
 before_install:
-  - docker build -t kpndigital/tox:py27_py35 .
+  - docker build -t kpndigital/tox:py27_py35_py36 .
 
 script:
-  - docker run --rm kpndigital/tox:py27_py35 python2.7 --version
-  - docker run --rm kpndigital/tox:py27_py35 python3.5 --version
+  - docker run --rm kpndigital/tox:py27_py35_py36 python2.7 --version
+  - docker run --rm kpndigital/tox:py27_py35_py36 python3.5 --version
+  - docker run --rm kpndigital/tox:py27_py35_py36 python3.6 --version
   
-  - docker run --rm kpndigital/tox:py27_py35 bash -c "virtualenv /tmp && test -f /tmp/bin/pip"
-  - docker run --rm kpndigital/tox:py27_py35 bash -c "virtualenv -ppython3.5 /tmp && test -f /tmp/bin/pip"
-  - docker run --rm kpndigital/tox:py27_py35 bash -c "docker-compose --version"
+  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "virtualenv /tmp && test -f /tmp/bin/pip"
+  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "virtualenv -ppython3.5 /tmp && test -f /tmp/bin/pip"
+  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "python3.6 -m venv /tmp && test -f /tmp/bin/pip"
+  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "docker-compose --version"
