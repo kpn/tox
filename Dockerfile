@@ -6,6 +6,7 @@ ENV pythonVersions="$python2Versions $python3Versions"
 RUN set -x \
     && apt-get update \
     && apt-get install -y --no-install-recommends $pythonVersions \
+    && apt-get install -y $(for pyver in $pythonVersions; do echo $pyver-dev; done) \
     && apt-get install -y $(for py3ver in $python3Versions; do echo $py3ver-venv; done) \
     && rm -rf /var/lib/apt/lists/*
 
