@@ -1,4 +1,4 @@
-FROM ubuntu:16.10
+FROM ubuntu:17.04
 ENV python2Versions='python2.7'
 ENV python3Versions='python3.5 python3.6'
 ENV pythonVersions="$python2Versions $python3Versions"
