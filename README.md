@@ -4,13 +4,13 @@ A Docker image for running python unittests through tox.
 
 ## OS
 
-* Ubuntu 17.04
+* Ubuntu 19.04
 
 ## Python versions
 
-* 2.7.13
-* 3.5.3
-* 3.6.1
+* 2.7
+* 3.7
+* 3.8
 
 ## Python packages
 
@@ -19,5 +19,5 @@ A Docker image for running python unittests through tox.
 
 ## Docker
 
-* docker-ce 17.03
-* docker-compose 1.12
+* docker-ce 17.03+
+* docker-compose 1.12+

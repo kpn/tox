@@ -4,23 +4,23 @@ services:
   - docker
   
 before_install:
-  - docker build -t kpndigital/tox:py27_py35_py36 .
+  - docker build -t kpndigital/tox:py27_py37_py38 .
 
 script:
-  - docker run --rm kpndigital/tox:py27_py35_py36 python2.7 --version
-  - docker run --rm kpndigital/tox:py27_py35_py36 python3.5 --version
-  - docker run --rm kpndigital/tox:py27_py35_py36 python3.6 --version
+  - docker run --rm kpndigital/tox:py27_py37_py38 python2.7 --version
+  - docker run --rm kpndigital/tox:py27_py37_py38 python3.7 --version
+  - docker run --rm kpndigital/tox:py27_py37_py38 python3.8 --version
   
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "virtualenv /tmp && test -f /tmp/bin/pip"
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "virtualenv -ppython3.5 /tmp && test -f /tmp/bin/pip"
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "python3.6 -m venv /tmp && test -f /tmp/bin/pip"
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "virtualenv-2.7 /tmp && /tmp/bin/pip -vvv install cryptography" 
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "python3.5 -m venv /tmp && /tmp/bin/pip -vvv install cryptography" 
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "python3.6 -m venv /tmp && /tmp/bin/pip -vvv install cryptography" 
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "docker-compose --version"
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip install tox && tox -e py27"
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip install tox && tox -e py35"
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip install tox && tox -e py36"
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip3 install tox && tox -e py27"
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip3 install tox && tox -e py35"
-  - docker run --rm kpndigital/tox:py27_py35_py36 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip3 install tox && tox -e py36"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "virtualenv /tmp && test -f /tmp/bin/pip"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "virtualenv -ppython3.7 /tmp && test -f /tmp/bin/pip"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "python3.8 -m venv /tmp && test -f /tmp/bin/pip"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "virtualenv-2.7 /tmp && /tmp/bin/pip -vvv install cryptography" 
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "python3.7 -m venv /tmp && /tmp/bin/pip -vvv install cryptography"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "python3.8 -m venv /tmp && /tmp/bin/pip -vvv install cryptography"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "docker-compose --version"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip install tox && tox -e py27"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip install tox && tox -e py37"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip install tox && tox -e py38"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip3 install tox && tox -e py27"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip3 install tox && tox -e py37"
+  - docker run --rm kpndigital/tox:py27_py37_py38 bash -c "printf '[tox]\\nskipsdist=true\\n[testenv]\\ndeps=pytest\\ncommands=py.test --version\\n' > tox.ini && pip3 install tox && tox -e py38"
