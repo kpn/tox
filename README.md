@@ -2,6 +2,11 @@
 
 A Docker image for running python unittests through tox.
 
+# NOT MAINTAINED
+
+This repository is not actively maintained anymore.
+
+
 ## OS
 
 * Ubuntu 19.04
